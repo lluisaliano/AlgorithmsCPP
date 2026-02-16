@@ -1,6 +1,7 @@
 #include "heap.hpp"
 #include <iostream>
 #include <ostream>
+#include <vector>
 
 template <typename T>
 std::ostream& operator<<(std::ostream& out, std::vector<T>& vector) {
@@ -23,4 +24,5 @@ int main() {
   std::vector sortedSuperCoolArray{Heap::heapSort(superCoolArray)};
 
   std::cout << sortedSuperCoolArray << '\n';
+
 }

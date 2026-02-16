@@ -5,13 +5,14 @@
 #include <utility>
 #include <vector>
 
+// We use a namespace to store Heap algorithm
 namespace Heap {
   class MaxHeap {
    private:
     std::vector<int> m_data{};
 
-    void heapify(const int index, int maxLength=-1) {
-      if (maxLength==-1) {
+    void heapify(const int index, int maxLength = -1) {
+      if (maxLength == -1) {
         maxLength = static_cast<int>(m_data.size());
       }
       if (index >= maxLength) {
@@ -23,12 +24,10 @@ namespace Heap {
 
       int max{index};
 
-      if (leftChild < maxLength &&
-          m_data[leftChild] > m_data[max]) {
+      if (leftChild < maxLength && m_data[leftChild] > m_data[max]) {
         max = leftChild;
       }
-      if (rightChild < maxLength &&
-          m_data[rightChild] > m_data[max]) {
+      if (rightChild < maxLength && m_data[rightChild] > m_data[max]) {
         max = rightChild;
       }
 
