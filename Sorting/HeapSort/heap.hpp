@@ -39,7 +39,7 @@ namespace Heap {
 
       // Rerun heapify on the new position of the element (which is max as we
       // swapped them)
-      heapify(max, maxLength);
+      heapify(max, maxLength); // max is the element passed on index, as the swapping exchanged the values
     }
 
    public:
@@ -48,9 +48,9 @@ namespace Heap {
 
     MaxHeap(std::vector<int> values) : m_data{std::move(values)} {
       // We have to call heapify on all elements that are not leafs
-      int lastNotLeaf{static_cast<int>((values.size() / 2)) - 1};
+      int lastNotLeaf{static_cast<int>((m_data.size() / 2)) - 1}; // Last non leaf
 
-      for (int i{lastNotLeaf}; i >= 0; --i) {
+      for (int i{lastNotLeaf}; i >= 0; --i) { // We do not call it on leafs as they already respect the heap property
         heapify(i);
       }
     }
@@ -59,13 +59,18 @@ namespace Heap {
       m_data.push_back(e);
 
       int index = m_data.size() - 1;
-      int parent{static_cast<int>(std::floor((index - 1) / 2))};
+
+      if (index == 0) { // There is only one element
+        return;
+      }
+
+      int parent{static_cast<int>(((index - 1) / 2))};
 
       while (m_data[parent] < m_data[index] && index > 0) {
         std::swap(m_data[parent], m_data[index]);
 
         index = parent;
-        parent = static_cast<int>(std::floor(index / 2));
+        parent = static_cast<int>((index / 2));
       }
     }
 
@@ -78,7 +83,7 @@ namespace Heap {
       heapify(index);
     }
 
-    std::size_t getSize() { return m_data.size(); }
+    std::size_t getSize() const { return m_data.size(); }
 
     friend std::vector<int> heapSort(std::vector<int>&);
   };
@@ -88,10 +93,10 @@ namespace Heap {
     std::size_t nonSortedElems{heap.getSize()};
 
     while (nonSortedElems > 0) {
-      std::swap(heap.m_data[0], heap.m_data[nonSortedElems - 1]);
+      std::swap(heap.m_data[0], heap.m_data[nonSortedElems - 1]); // We put the biggest value at the end, an consider that one ordered
       --nonSortedElems;
 
-      heap.heapify(0, nonSortedElems);
+      heap.heapify(0, nonSortedElems); // Then we make the latest element of the array respect the heap property, constructing a heap again
     }
 
     return heap.m_data;
