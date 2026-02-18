@@ -1,0 +1,11 @@
+[
+  {
+    "file": "src/main.cpp",
+    "arguments": [
+      "clang++",
+      "src/main.cpp",
+      "--std=c++23"
+    ],
+    "directory": "/home/lluis/Projects/AlgorithmsCPP"
+  }
+]
