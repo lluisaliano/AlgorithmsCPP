@@ -4,8 +4,10 @@
     "arguments": [
       "clang++",
       "src/main.cpp",
-      "--std=c++23"
+      "--std=c++23",
+      "-Wall",
+      "-Wconversion"
     ],
-    "directory": "/home/lluis/Projects/AlgorithmsCPP"
+    "directory": "/home/lluis/Projects/AlgorithmsCPP/Sorting/QuickSort"
   }
 ]
