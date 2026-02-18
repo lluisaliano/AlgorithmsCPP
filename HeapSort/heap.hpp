@@ -43,16 +43,10 @@ namespace Heap {
     }
 
    public:
-    MaxHeap(std::initializer_list<int> values) : m_data{values} {
-      // We have to call heapify on all elements that are not leafs
-      int lastNotLeaf{static_cast<int>((values.size() / 2)) - 1};
+    MaxHeap(std::initializer_list<int> values)
+        : MaxHeap(std::vector<int>(values)) {}
 
-      for (int i{lastNotLeaf}; i >= 0; --i) {
-        heapify(i);
-      }
-    }
-
-    MaxHeap(std::vector<int>& values) : m_data{values} {
+    MaxHeap(std::vector<int> values) : m_data{std::move(values)} {
       // We have to call heapify on all elements that are not leafs
       int lastNotLeaf{static_cast<int>((values.size() / 2)) - 1};
 
